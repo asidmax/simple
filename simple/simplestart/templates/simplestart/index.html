@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Доска объявлений</title>
-</head>
-<body>
-    <h1>Объявления</h1>
-    <div>
-    <a href="{% url 'index' %}">Главная</a>
-    <a href="{% url 'add' %}">Добавить</a>
-    {% for rubric in rubrics %}
-    <a href="{% url 'by_rubric' rubric.pk %}">Рубрика {{rubric.name}}</a>
-    {% endfor %}
-</div>
+{% extends "layout/base.html" %}
+
+{% block page_content %}
+
+<div class="b">
     {% for ss in sss %}
-    <div>
+    <div class="alert alert-dark">
         <h2>{{ss.title}}</h2>
         <p>{{ss.content}}</p>
         <p><a href="/simplestart/{{ss.rubric.pk}}/">{{ss.rubric.name}}</a></p>
         <p>{{ss.published|date:"d.m.Y H:i:s"}}</p>
     </div>
     {% endfor %}
-</body>
-</html>
+</div>
+
+{% endblock %}
